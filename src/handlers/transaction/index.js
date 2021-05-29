@@ -43,7 +43,15 @@ const getTransactions = ({ tsStart, tsEnd, actions, mentionedAccounts }) => {
   if (mentionedAccounts && mentionedAccounts.length > 1) {
     pipeline.push({ $match: { mentionedAccounts: { $in: mentionedAccounts } } });
   } else if (mentionedAccounts && mentionedAccounts.length === 1) {
-    pipeline.push({ $match: { account: mentionedAccounts[0] } });
+    pipeline.push({
+      $match: {
+        $or: [
+          { account: mentionedAccounts[0] },
+          { mentionedAccounts: { $in: mentionedAccounts }},
+          { to: mentionedAccounts[0] }
+        ]
+      }
+    })
   }
   return TransactionLastHourModelV2.aggregate(pipeline);
 };
@@ -64,6 +72,7 @@ const initHandler = () => {
         });
       });
     } catch (e) {
+      console.log(e)
       logError(e);
     }
   };
