@@ -7,7 +7,7 @@
   "NODE": {
     "HOST": "https://china.junona.info",
     "PORT": "443",
-    "ALLOWABLE_MAX_PING": 150
+    "ALLOWABLE_MAX_PING": 1500
   },
   "RESERVE_NODES": [
 
@@ -88,8 +88,8 @@
   "LAST_BLOCKS_NUMBER_FOR_CALCULATING_AVG_APS_TPS": 20,
   "START_BLOCKS_HANDLING_FROM": 1, // if 0 -> start from last block
   "UPDATE_TRANSACTIONS": {
-    "FROM_BLOCK_NUM": 9582205,
-    "TO_BLOCK_NUM": 10026035,
+    "FROM_BLOCK_NUM": 0,
+    "TO_BLOCK_NUM": 999999999999,
     "DEFAULT_VALUE": -1
   },
   "SOCKET_ROOM": "room",

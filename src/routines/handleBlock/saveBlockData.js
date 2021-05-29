@@ -5,6 +5,7 @@ const {
   AccountModelV2,
   ProducerModelV2,
   TransactionLastHourModelV2,
+  TransactionModelV2,
 } = require('../../db');
 const { createLogger } = require('../../helpers');
 

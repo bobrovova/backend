@@ -46,7 +46,7 @@ const createEosApi = ({ host = NODE.HOST, port = NODE.PORT, isVariable = true, o
       return;
     }
     eos = EosApi({ httpEndpoint: `${currentNode.HOST}:${currentNode.PORT}`, logger });
-    logInfo(`Node was changed on ${currentNode.HOST}:${currentNode.PORT}`);
+    //logInfo(`Node was changed on ${currentNode.HOST}:${currentNode.PORT}`);
   };
 
   // wrap every eosApi function

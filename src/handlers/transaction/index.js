@@ -29,7 +29,7 @@ const getCountInfo = async () => {
 const getTransactions = ({ tsStart, tsEnd, actions, mentionedAccounts }) => {
   const pipeline = [];
   // time
-  pipeline.push({ $match: { createdAt: { $gte: new Date(castToInt(tsStart)) } } });
+  pipeline.push({ $match: { createdAt: { $gte: new Date(castToInt(0)) } } });
   if (tsEnd) {
     pipeline.push({ $match: { createdAt: { $lte: new Date(castToInt(tsEnd)) } } });
   }
@@ -43,7 +43,7 @@ const getTransactions = ({ tsStart, tsEnd, actions, mentionedAccounts }) => {
   if (mentionedAccounts && mentionedAccounts.length > 1) {
     pipeline.push({ $match: { mentionedAccounts: { $in: mentionedAccounts } } });
   } else if (mentionedAccounts && mentionedAccounts.length === 1) {
-    pipeline.push({ $match: { action: mentionedAccounts[0] } });
+    pipeline.push({ $match: { account: mentionedAccounts[0] } });
   }
   return TransactionLastHourModelV2.aggregate(pipeline);
 };
