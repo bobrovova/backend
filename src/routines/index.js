@@ -105,7 +105,7 @@ const startRoutine = async () => {
 
   startHandleBlockRoutine();
 
-  startCleanTransactionsLastHourCollection();
+  //startCleanTransactionsLastHourCollection();
 
   startCalculateRewardsPerDay();
 
