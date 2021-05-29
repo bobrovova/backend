@@ -16,11 +16,7 @@ const createSlackNotifier = () => {
 
   return {
     notify: ({ isError, message }) => {
-      slack.chat.postMessage(createOptions(isError, message), (err) => {
-        if (err) {
-          console.error('Error sending log to slack: ', err);
-        }
-      });
+
     },
   };
 };

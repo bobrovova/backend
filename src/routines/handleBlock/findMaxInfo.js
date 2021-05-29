@@ -31,7 +31,7 @@ const findMaxInfo = async ({ current = { transactions: [] }, previous, max_tps =
     live_aps_1 = actionsNumber / producedInSeconds;
 
     console.log('\x1b[36m%s\x1b[0m',`max TPS: ${live_tps}, BLOCK: ${current.block_num}, transactionsNumber = ${transactionsNumber}, actionsNumber = ${actionsNumber}, ${producedInSeconds}`);
-  } // else {
+  } else {
     // the block was produced in half of second
     // find number of transactions for 0.5 sec for previous block
     if (!previous.producedInSeconds) {
@@ -51,7 +51,7 @@ const findMaxInfo = async ({ current = { transactions: [] }, previous, max_tps =
     live_aps = (live_aps_1 > live_aps_2) ? live_aps_1: live_aps_2;
 
     console.log('\x1b[36m%s\x1b[0m',`max TPS: ${live_tps}, BLOCK: ${current.block_num}, prevTx = ${prevTrxNumber}, currTx = ${currTrxNumber}, prevBlocksDiff = ${previous.producedInSeconds}`);
-  //}
+  }
   live_aps = live_aps < live_tps ? live_tps : live_aps;
   const res = {};
   if (live_tps > max_tps) {

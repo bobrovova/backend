@@ -1,26 +1,19 @@
 {
   "SERVER": {
-    "HOST": "http://localhost", // webaddress
+    "HOST": "http://localhost",
     "PORT": "3002"
   },
   "VERSION": "2.0",
   "NODE": {
-    "HOST": "https://api.xec.cryptolions.io",
+    "HOST": "https://china.junona.info",
     "PORT": "443",
-    "ALLOWABLE_MAX_PING": 150 // in ms. When ping is greater than this value, the node will be changed
+    "ALLOWABLE_MAX_PING": 150
   },
   "RESERVE_NODES": [
-    {
-      "HOST": "https://api.xec.cryptolions.io",
-      "PORT": "443"
-    },
-    {
-      "HOST": "https://api.xec.cryptolions.io",
-      "PORT": "443"
-    }
+
   ],
   "NODE_WITH_HISTORY": {
-    "HOST": "https://api.xec.cryptolions.io",
+    "HOST": "https://china.junona.info",
     "PORT": "443"
   },
   "MONGODB": {
@@ -28,8 +21,8 @@
     "DB_NAME": "XECNet",
     "AUTH_IS_REQUIRED": false,
     "AUTH_SOURCE": "admin",
-    "USER": "eosdev23",
-    "PASSWORD": "eosdev23"
+    "USER": "eos",
+    "PASSWORD": "Rns-669212"
   },
   "EOS": {
     "GET_INFO_API_PATH": "/v1/chain/get_info", // api_get_info
@@ -108,11 +101,5 @@
   "RELOAD_PAGE_COOLDAWN": 60000, // not more often than once a minute
   "BUGSNAG_API_KEY": "set your key",
   "SAVE_TABLE_INTERVAL": 10000, // in ms
-  "SLACK": {
-    "TOKEN": "set your token",
-    "CHANEL_ID": "CCM4DMHE3",
-    "ICON_URL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5vQyHLJ9mUn8BQN7BQ6nG_x9L92pL2zq_tLJh-cs9tU5Zj-ab",
-    "USERNAME": "Dev-Server"
-  },
   "USE_CHECKED_DATA": true
 }

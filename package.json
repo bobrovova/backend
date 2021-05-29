@@ -21,7 +21,6 @@
     "test": "./node_modules/mocha/bin/mocha --timeout 10000 tests/**/*test.js"
   },
   "dependencies": {
-    "appmetrics-dash": "^4.0.0",
     "assert": "^1.4.1",
     "async": "^2.6.1",
     "body-parser": "^1.18.3",

@@ -24,6 +24,7 @@ const convertFieldsFromStringToArr = fields => fields.split(' ').map(s => s.trim
 
 const getProducersInfo = async () => {
   const { total_producer_vote_weight } = await eosApi.getProducers({ json: true, limit: 1 });
+  console.log('Here work', total_producer_vote_weight)
   const onePercent = castToInt(total_producer_vote_weight) / 100;
   const fields =
     `url
@@ -46,7 +47,6 @@ const getProducersInfo = async () => {
       endpoints
       blackListHash
       bpData
-      nodes
       nodes._id
       nodes.enabled
       nodes.bp_name
