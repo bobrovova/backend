@@ -1,5 +1,4 @@
 const { BUGSNAG_API_KEY, WHITE_LIST, ENABLE_CORS_SUPPORT, SERVER } = require('config');
-require('appmetrics-dash').monitor();
 const express = require('express');
 const createSocketIO = require('socket.io');
 const { Server } = require('http');
