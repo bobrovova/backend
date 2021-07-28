@@ -6,7 +6,7 @@ const {
 const { castToInt, pickAs } = require('../../helpers');
 
 const sort = rows => {
-  const result = [...rows].filter(e => e.totalVotes);
+  const result = [...rows].filter(e => e.totalVotes >= 0);
   result.sort((a, b) => castToInt(b.totalVotes) - a.totalVotes);
   return result;
 };
@@ -79,6 +79,7 @@ const createStorage = () => {
 
     const newStorage = {};
     sort(transformedProducers).forEach(e => {
+      console.log(e.name)
       newStorage[e.name] = {
         ...storage[e.name],
         ...e,

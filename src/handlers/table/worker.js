@@ -84,6 +84,7 @@ const initProducerHandler = async () => {
       const producers = await getProducersInfo();
       //  console.log(producers[0])
       storage.updateProducers(producers);
+      //console.log(await storage.getAll())
       const nextProducersOrder = (await storage.getAll()).map(p => p.name);
       const orderIsChanged = nextProducersOrder.find((e, i) => e !== previousProducersOrder[i]);
       if (orderIsChanged) {
