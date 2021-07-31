@@ -45,6 +45,22 @@ const init = ({ app, handlers }) => {
   });
   app.get(`${API_PREFIX}/accounts/:name/history/`, async (req, res) => {
     try {
+      try {
+        const now = Date.now();
+        const { tsStart = now - 1000, tsEnd, actions, name } = req.query;
+        const correctedActions = actions && actions.split(',');
+        const correctedMentionedAccounts = [name];
+        const history = await transactionHandler.getTransactions({
+          tsStart,
+          tsEnd,
+          actions: correctedActions,
+          mentionedAccounts: correctedMentionedAccounts,
+        });
+        res.status(200).send(history);
+      } catch (e) {
+        res.status(500).send('Internal Server Error');
+      }
+
       const { name } = req.params;
       const { skip = 0, limit = 10 } = req.query;
       const response = await request({
