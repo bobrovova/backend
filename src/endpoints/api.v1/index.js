@@ -45,50 +45,30 @@ const init = ({ app, handlers }) => {
   });
   app.get(`${API_PREFIX}/accounts/:name/history/`, async (req, res) => {
     try {
-      try {
-        const now = Date.now();
-        const { tsStart = now - 1000, tsEnd, actions, name } = req.query;
-        const correctedActions = actions && actions.split(',');
-        const correctedMentionedAccounts = [name];
-        const history = await transactionHandler.getTransactions({
-          tsStart,
-          tsEnd,
-          actions: correctedActions,
-          mentionedAccounts: correctedMentionedAccounts,
-        });
-        res.status(200).send(history);
-      } catch (e) {
-        res.status(500).send('Internal Server Error');
-      }
-
+      const now = Date.now();
       const { name } = req.params;
-      const { skip = 0, limit = 10 } = req.query;
-      const response = await request({
-        url: `http://history.cryptolions.io/v1/history/get_actions/${name}?skip=${skip}&offset=${limit}`,
-        json: true,
+      const { tsStart = now - 1000, tsEnd, actions } = req.query;
+      const correctedActions = actions && actions.split(',');
+      const correctedMentionedAccounts = [name];
+      const history = await transactionHandler.getTransactions({
+        tsStart,
+        tsEnd,
+        actions: correctedActions,
+        mentionedAccounts: correctedMentionedAccounts,
       });
-      const correctedHistory = await Promise.all(response.actions.map(async action => {
-        const { trx_id, block_num, createdAt } = action;
-        return (await processAction({ block_num, transaction: { expiration: createdAt }, id: trx_id })(response.actions[0].act)).txInfo;
-      }));
-      res
-        .set('count', response.actionsTotal)
-        .status(200)
-        .send(correctedHistory);
+      res.status(200).send(history);
     } catch (e) {
-      res.set('count', 0).status(200).send([]);
+      res.status(500).send('Internal Server Error');
     }
   });
   app.get(`${API_PREFIX}/transactions/:txid/`, async (req, res) => {
     const { txid } = req.params;
-    requestMain.get(`${NODE_WITH_HISTORY.HOST}:${NODE_WITH_HISTORY.PORT}/v1/history/get_transaction/${txid}`).pipe(res);
-    /*try {
+    try {
       const tx = await TransactionModelV2.findOne({ txid });
       res.status(200).send(tx);
     } catch (e) {
       res.status(500).send('Internal Server Error');
-    }*/
-
+    }
   });
   app.get(`${API_PREFIX}/transactions/`, async (req, res) => {
     try {
